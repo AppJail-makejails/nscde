@@ -1,0 +1,22 @@
+INCLUDE options/options.makejail
+
+PKG nscde
+
+CMD pw useradd -n nscde -c "Modern CDE clone based on fvwm" -d /home/nscde -s /bin/sh
+CMD mkdir -p /home/nscde
+CMD chown nscde:nscde /home/nscde
+
+STOP
+
+STAGE create
+
+CMD --local xhost +
+
+STAGE cmd
+
+ARG display=:0
+
+ENV DISPLAY=${display}
+
+USER nscde
+RUN nscde
