@@ -48,17 +48,16 @@ clear_tmp_X="NO"
 
 The `rc.conf(5)` file above sets `clear_tmp_X` to `NO` to not remove the sockets and various related files before the jail starts.
 
-Open a shell and run `appjail makejail`, `appjail start` and `appjail run`:
+Open a shell and run `appjail makejail` and `appjail start`:
 
 ```sh
 appjail makejail -j nscde -- --network development
 appjail start nscde
-appjail run nscde
 ```
 
-`xephyr` is very useful for using these applications.
+After Makejail builds the jail, you can run NsCDE using the `nscde_open` custom stage. `xephyr` is very useful for using these applications:
 
 ```
 Xephyr -screen 900x640 -br -ac -noreset :1 &
-appjail run -p 'display=:1' nscde
+appjail run -s nscde_open -p 'display=:1' nscde
 ```
