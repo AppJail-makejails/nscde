@@ -59,5 +59,6 @@ After Makejail builds the jail, you can run NsCDE using the `nscde_open` custom 
 
 ```
 Xephyr -screen 900x640 -br -ac -noreset :1 &
-appjail run -s nscde_open -p 'display=:1' nscde
+xhost +
+appjail run -s nscde_open -V DISPLAY=:1 nscde
 ```
